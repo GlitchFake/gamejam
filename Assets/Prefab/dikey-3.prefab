@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8234405665656852915, guid: 81eb9f3473f716d48861176984584387, type: 3}
       propertyPath: m_Name
-      value: Cube (1) Variant
+      value: dikey-3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234405665656852915, guid: 81eb9f3473f716d48861176984584387, type: 3}
+      propertyPath: m_TagString
+      value: duvar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,31 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
     public float jumpForce = 7.0f;
+    public float climbSpeed = 3.0f;
     private bool isGrounded;
-    private float jumpCooldown = 0.5f;
-    private float lastJumpTime;
+    private bool isClimbing;
     private Rigidbody rb;
+    private Vector3 startPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
     void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
-        rb.AddForce(movement * speed);
+        float moveVertical = isClimbing ? Input.GetAxis("Vertical") : 0.0f;
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && (Time.time - lastJumpTime >= jumpCooldown))
+        if (isClimbing)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, moveVertical * climbSpeed, rb.velocity.z);
+        }
+        else
+        {
+            rb.AddForce(movement * speed);
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            lastJumpTime = Time.time; // Zýplama zamanýný kaydet
+        }
+
+        if (transform.position.y < -5)
+        {
+            transform.position = startPosition;
+            rb.velocity = Vector3.zero;
         }
     }
 
@@ -34,6 +51,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("zemin"))
         {
             isGrounded = true;
+            isClimbing = false;
+        }
+        else if (other.gameObject.CompareTag("duvar"))
+        {
+            isClimbing = true;
         }
     }
 
@@ -41,15 +63,26 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("zemin"))
         {
-            // Zeminle temas kesildikten 0.5 saniye sonra isGrounded'ý false yap
-            StartCoroutine(GroundCheckCooldown());
+            isGrounded = false;
+        }
+        else if (other.gameObject.CompareTag("duvar"))
+        {
+            isClimbing = false;
         }
     }
 
-    private IEnumerator GroundCheckCooldown()
+    void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(jumpCooldown);
-        isGrounded = false;
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            LoadNextLevel();
+        }
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
 

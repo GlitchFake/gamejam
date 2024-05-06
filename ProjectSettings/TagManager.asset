@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - zemin
+  - duvar
   layers:
   - Default
   - TransparentFX
