@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isClimbing;
     private Rigidbody rb;
-    private Vector3 startPosition;
+    private const float maxSpeed = 5f; // Maksimum hýz sýnýrý
+    public Vector3 startPosition;   
 
     void Start()
     {
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = startPosition;
             rb.velocity = Vector3.zero;
+        }
+
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
 
