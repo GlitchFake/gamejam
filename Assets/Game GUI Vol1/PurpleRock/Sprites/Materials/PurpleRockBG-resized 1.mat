@@ -8,7 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PurpleRockBG-resized 1
+<<<<<<< HEAD
   m_Shader: {fileID: 10762, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> 023493e28e643cc9e3858cc815b19ea3726d527d
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -62,7 +66,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
+<<<<<<< HEAD
     - _ColorMask: 15
+=======
+>>>>>>> 023493e28e643cc9e3858cc815b19ea3726d527d
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -76,6 +83,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+<<<<<<< HEAD
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -83,6 +91,9 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _UseUIAlphaClip: 0
+=======
+    - _UVSec: 0
+>>>>>>> 023493e28e643cc9e3858cc815b19ea3726d527d
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
