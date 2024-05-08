@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GeriyeSayac : MonoBehaviour
@@ -8,10 +9,12 @@ public class GeriyeSayac : MonoBehaviour
     public TMP_Text sayacText;
     private float geriyeSay = 10f;
     private float milisaniye = 1000f;
+    private Vector3 startPosition; // Store the initial player position
 
     private void Start()
     {
         UpdateSayac();
+        startPosition = transform.position; // Save the initial position
     }
 
     private void UpdateSayac()
@@ -27,6 +30,11 @@ public class GeriyeSayac : MonoBehaviour
         {
             geriyeSay -= Time.deltaTime;
             UpdateSayac();
+        }
+        else
+        {
+            int mevcutSahneIndeksi = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(mevcutSahneIndeksi);
         }
     }
 }
