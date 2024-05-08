@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MonsterController : MonoBehaviour
 {
@@ -22,14 +23,16 @@ public class MonsterController : MonoBehaviour
     {
         float chaseDuration = 10f; // Takip süresi (10 saniye)
         float startTime = Time.time;
+        float maxSpeed = initialMoveSpeed * 2; // Maksimum hýzý belirleyin
 
         while (isChasing)
         {
             float elapsedTime = Time.time - startTime;
             float t = elapsedTime / chaseDuration; // Normalized time (0 to 1)
 
-            // Hýzý yavaþça artýr
-            currentMoveSpeed = Mathf.Lerp(initialMoveSpeed, 2 * initialMoveSpeed, t);
+            // Hýzý yavaþça artýr, ancak maksimum hýza ulaþtýðýnda artmayý durdur
+            currentMoveSpeed = Mathf.Lerp(initialMoveSpeed, maxSpeed, t);
+            currentMoveSpeed = Mathf.Min(currentMoveSpeed, maxSpeed); // Hýzý maksimum hýzla sýnýrla
 
             // Oyuncuyu takip et (sadece x ve y düzleminde)
             Vector3 targetPosition = new Vector3(player.position.x, player.position.y, transform.position.z);
@@ -39,17 +42,13 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Oyuncu baþlangýç konumuna döner
-            player.position = player.GetComponent<PlayerController>().startPosition;
-            // Monster baþlangýç konumuna döner ve tekrar takip etmeye baþlar
-            transform.position = startPosition;
-            currentMoveSpeed = initialMoveSpeed;
-            isChasing = true;
-            StartCoroutine(FollowPlayer());
+            int mevcutSahneIndeksi = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(mevcutSahneIndeksi);
         }
     }
 }

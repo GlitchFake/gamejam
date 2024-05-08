@@ -7,7 +7,7 @@ using TMPro;
 public class GeriyeSayac : MonoBehaviour
 {
     public TMP_Text sayacText;
-    private float geriyeSay = 10f;
+    public float geriyeSay = 10f;
     private float milisaniye = 1000f;
     private Vector3 startPosition; // Store the initial player position
 
@@ -36,5 +36,10 @@ public class GeriyeSayac : MonoBehaviour
             int mevcutSahneIndeksi = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(mevcutSahneIndeksi);
         }
+    }
+    public void ResetTimer()
+    {
+        geriyeSay = 10f; // Zamaný 10 saniyeye sýfýrla
+        UpdateSayac(); // Sayacý güncelle
     }
 }
