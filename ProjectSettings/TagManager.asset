@@ -7,6 +7,7 @@ TagManager:
   - zemin
   - duvar
   - monster
+  - time
   layers:
   - Default
   - TransparentFX
