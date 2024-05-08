@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -5)
         {
-            int mevcutSahneIndeksi = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(mevcutSahneIndeksi);
+            transform.position = startPosition;
+            rb.velocity = Vector3.zero;
         }
 
         if (rb.velocity.magnitude > maxSpeed)
@@ -83,12 +83,6 @@ public class PlayerController : MonoBehaviour
         {
             LoadNextLevel();
         }
-        if (other.gameObject.CompareTag("time"))
-        {
-            FindObjectOfType<GeriyeSayac>().ResetTimer();
-            Destroy(other.gameObject);
-        }
-        
     }
 
     void LoadNextLevel()

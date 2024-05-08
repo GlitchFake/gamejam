@@ -7,7 +7,25 @@ TagManager:
   - zemin
   - duvar
   - monster
-  - time
+  - close
+  - setings
+  - sounds
+  - info
+  - play
+  - score
+  - levels
+  - level1
+  - level2
+  - level3
+  - level4
+  - level5
+  - level6
+  - level7
+  - level8
+  - level9
+  - level10
+  - home
+  - obs
   layers:
   - Default
   - TransparentFX
