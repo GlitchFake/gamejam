@@ -1,0 +1,1 @@
+Oyuncu, gizemli bir hayaletten kaçarken zaman kapsülleri toplamaya çalışıyor. Oyun boyunca oyuncu, çeşitli engellerden atlayarak ve tuzaklardan kaçınarak ilerlemeli. Amaç, her seviyenin sonunda bulunan çıkışa ulaşmak. Oyun, oyuncunun reflekslerini ve stratejik düşünme yeteneğini test eden hızlı tempolu bir macera sunuyor.
